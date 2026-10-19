@@ -1,6 +1,7 @@
 import { doCopy } from "../clipboard.js";
 import { getSelectionAsMarkdown } from "../conversion.js";
 import { getAllOptionsWithDefaults } from "../settings/defaults.js";
+import { escapeHtml, escapeHtmlAttribute } from "../utils/escape.js";
 import { convertTitleSubstitution } from "../utils/title-substitution.js";
 
 async function main() {
@@ -16,7 +17,7 @@ async function main() {
     let text = options.linkWithoutStyling
       ? `${title} (${document.URL})`
       : `[${title}](${document.URL})`;
-    let html = `<a href="${document.URL}">${title}</a>`;
+    let html = `<a href="${escapeHtmlAttribute(document.URL)}">${escapeHtml(title)}</a>`;
     const selection = await getSelectionAsMarkdown(options);
 
     if (selection.output !== "") {
