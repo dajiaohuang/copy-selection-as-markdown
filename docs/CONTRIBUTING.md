@@ -78,7 +78,7 @@ extension and reviewer source archive, then submits the extension to AMO's
 
 To make sure Turndown conversion remains intact after my modification for supporting [MathJax](https://www.mathjax.org/), I use [Jest snapshot testing](https://jestjs.io/docs/en/snapshot-testing). When you updated [Turndown](https://github.com/domchristie/turndown), you have to [update snapshots](<(https://jestjs.io/docs/en/cli.html#updatesnapshot)>).
 
-1. Comment out following line from [`packages/core/test/test.js`](../packages/core/test/test.js)
+1. Comment out following line from [`packages/core/test/regression.test.js`](../packages/core/test/regression.test.js)
    ```js
    turndownService.use(turndownPluginMathJax);
    ```
@@ -86,7 +86,7 @@ To make sure Turndown conversion remains intact after my modification for suppor
    ```sh
    $ pnpm --filter copy-selection-as-markdown-core test -- --updateSnapshot
    ```
-3. Revert [`packages/core/test/test.js`](../packages/core/test/test.js)
+3. Revert [`packages/core/test/regression.test.js`](../packages/core/test/regression.test.js)
 4. Run test cases
    ```sh
    $ pnpm test
