@@ -1,18 +1,10 @@
-const escapeWith = (escapes) => (text) =>
-  text.replace(/[&<>"]/g, (character) => escapes[character] || character);
-
-export const escapeHtml = escapeWith({
-  "&": "&amp;",
-  "<": "&lt;",
-  ">": "&gt;",
-});
-
-export const escapeHtmlAttribute = escapeWith({
+const htmlEscapes = {
   "&": "&amp;",
   "<": "&lt;",
   ">": "&gt;",
   '"': "&quot;",
-});
+  "'": "&#39;",
+};
 
-export const escapeMarkdownLinkText = (text) =>
-  text.replace(/([\\`*_[\]<>])/g, "\\$1");
+export const escapeHtml = (text) =>
+  text.replace(/[&<>"']/g, (character) => htmlEscapes[character]);
